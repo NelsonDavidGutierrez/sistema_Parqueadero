@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Vehicle</title>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Agregar Vehiculo</h1>
+    <form th:action="@{/vehicles/add}" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Usuario</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <label for="vehicleType" class="form-label">Tipo Vehiculo</label>
+            <select class="form-control" id="vehicleType" name="vehicleType" required>
+                <option value="car">Carro</option>
+                <option value="motorcycle">Moto</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Agregar</button>
+        <a class="btn btn-secondary" th:href="@{/vehicles}">Cancelar</a>
+    </form>
+</div>
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
