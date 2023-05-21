@@ -43,20 +43,20 @@ public class VehicleController {
         return "redirect:/vehicles";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit")
     public String showEditForm(@PathVariable Long id, Model model) {
         Vehicle vehicle = vehicleService.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
         return "vehiculo/editarVehiculo";
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/edit")
     public String updateVehicle(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle updatedVehicle) {
         vehicleService.updateVehicle(id, updatedVehicle);
         return "redirect:/vehicles";
     }
 
-    @GetMapping("/{id}/delete")
+    @GetMapping("/delete")
     public String deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
         return "redirect:/vehicles";
