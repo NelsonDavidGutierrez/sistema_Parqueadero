@@ -30,7 +30,7 @@ public class VehicleService {
         return vehicles.stream()
                 .filter(vehicle -> vehicle.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Vehicle not found"));
+                .orElseThrow(() -> new IllegalArgumentException("No funciona"));
     }
 
     public List<Vehicle> getAllVehicles() {
