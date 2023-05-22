@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Integer Id;
     private String username;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
