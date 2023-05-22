@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 @Controller
 @RequestMapping("/vehicles")
 public class VehicleController {
@@ -43,22 +46,41 @@ public class VehicleController {
         return "redirect:/vehicles";
     }
 
-    @GetMapping("/edit")
+    @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         Vehicle vehicle = vehicleService.getVehicleById(id);
         model.addAttribute("vehicle", vehicle);
         return "vehiculo/editarVehiculo";
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/edit/{id}")
     public String updateVehicle(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle updatedVehicle) {
         vehicleService.updateVehicle(id, updatedVehicle);
         return "redirect:/vehicles";
     }
 
-    @GetMapping("/delete")
+    @GetMapping("/delete/{id}")
     public String deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
         return "redirect:/vehicles";
+    }
+
+    @GetMapping("/calculate-price/{id}")
+    public String calculatePrice(@PathVariable Long id, Model model) {
+        Vehicle vehicle = vehicleService.getVehicleById(id);
+        LocalDateTime now = LocalDateTime.now();
+        Duration duration = Duration.between(vehicle.getEntryTime(), now);
+        double hours = duration.toHours();
+        double pricePerHour = (vehicle.getVehicleType().equals("carro")) ? 2500 : 1500;
+        double totalPrice = hours * pricePerHour;
+
+        model.addAttribute("vehicle", vehicle);
+        model.addAttribute("entryTime", vehicle.getEntryTime());
+        model.addAttribute("exitTime", now);
+        model.addAttribute("hours", hours);
+        model.addAttribute("pricePerHour", pricePerHour);
+        model.addAttribute("totalPrice", totalPrice);
+
+        return "vehiculo/precioAPagar";
     }
 }
