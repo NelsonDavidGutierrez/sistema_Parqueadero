@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class VehicleServiceImpl extends VehicleService {
+public class VehicleServiceImpl implements VehicleService {
     private static final double CAR_HOUR_PRICE = 2500;
     private static final double BIKE_HOUR_PRICE = 1500;
     private List<Vehicle> vehicles = new ArrayList<>();
