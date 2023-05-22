@@ -1,29 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Editar Vehículo</title>
-  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
-  <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Editar Vehículo</title>
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-4">
-  <h1>Editar Vehículo</h1>
-  <form th:action="@{/vehicles/edit/{id}(id=${vehicle.id})}" method="post">
-    <div class="mb-3">
-      <label for="username" class="form-label">Placa</label>
-      <input type="text" class="form-control" id="username" name="username" th:value="${vehicle.username}" required>
-    </div>
-    <div class="mb-3">
-      <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
-      <select class="form-control" id="vehicleType" name="vehicleType" required>
-        <option value="Carro" th:selected="${vehicle.vehicleType == 'Carro'}">Carro</option>
-        <option value="Moto" th:selected="${vehicle.vehicleType == 'Moto'}">Moto</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Actualizar</button>
-    <a class="btn btn-secondary" th:href="@{/vehicles}">Cancelar</a>
-  </form>
+    <h1>Editar Vehículo</h1>
+    <form th:action="@{/vehicles/update}" method="post">
+        <label for="placa" class="form-label">Placa: </label>
+        <input type="text" class="form-control" id="placa" name="placa" th:value="${vehicle != null ? vehicle.placa : ''}" required>
+        <div class="mb-3">
+            <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
+            <select class="form-control" id="vehicleType" name="vehicleType" required>
+                <option value="Carro" th:selected="${vehicle.vehicleType == 'vehicleType'}">Carro</option>
+                <option value="Moto" th:selected="${vehicle.vehicleType == 'vehicleType'}">Moto</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a class="btn btn-secondary" th:href="@{/vehicles}">Cancelar</a>
+    </form>
 </div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

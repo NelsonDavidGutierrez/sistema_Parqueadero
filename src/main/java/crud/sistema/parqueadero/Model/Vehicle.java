@@ -14,13 +14,15 @@ import java.time.LocalDateTime;
 public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String username;
-    private LocalDateTime entryTime;
-    private LocalDateTime exitTime;
-    private String vehicleType;
+    @Column(name = "id")
+    private Integer Id;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private Users user;
+    @Column(name = "nombreUsuario")
+    private String nombreUsuario;
+
+    @Column(name = "placa")
+    private String placa;
+
+    @Column(name = "vehicleType")
+    private String vehicleType;
 }
