@@ -2,23 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Agregar Vehiculos</title>
+    <title>Agregar Vehículo</title>
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Agregar Vehiculo</h1>
+    <h1>Agregar Vehículo</h1>
     <form th:action="@{/vehicles/add}" method="post">
         <div class="mb-3">
-            <label for="username" class="form-label">Usuario</label>
+            <label for="username" class="form-label">Placa</label>
             <input type="text" class="form-control" id="username" name="username" required>
         </div>
         <div class="mb-3">
-            <label for="vehicleType" class="form-label">Tipo Vehiculo</label>
+            <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
             <select class="form-control" id="vehicleType" name="vehicleType" required>
-                <option value="car">Carro</option>
-                <option value="motorcycle">Moto</option>
+                <option value="Carro">Carro</option>
+                <option value="Moto">Moto</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Agregar</button>

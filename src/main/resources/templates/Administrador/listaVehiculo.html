@@ -2,19 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Listar Vehiculos</title>
+  <title>Lista de Vehículos</title>
   <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-4">
-  <h1>Lista Vehiculos</h1>
+  <h1>Lista de Vehículos</h1>
   <table class="table">
     <thead>
     <tr>
-      <th>Nombre</th>
+      <th>Placa</th>
       <th>Tipo</th>
-      <th>Accion</th>
+      <th>Acción</th>
     </tr>
     </thead>
     <tbody>
@@ -23,13 +23,14 @@
       <td th:text="${vehicle.vehicleType}"></td>
       <td>
         <a class="btn btn-info btn-sm" th:href="@{/vehicles/{id}(id=${vehicle.id})}">Ver</a>
-        <a class="btn btn-primary btn-sm" th:href="@{/vehicles/{id}/edit(id=${vehicle.id})}">Editar</a>
-        <a class="btn btn-danger btn-sm" th:href="@{/vehicles/{id}/delete(id=${vehicle.id})}" onclick="return confirm('¿Esta Seguro?')">Eliminar</a>
+        <a class="btn btn-primary btn-sm" th:href="@{/vehicles/edit/{id}(id=${vehicle.id})}">Editar</a>
+        <a class="btn btn-danger btn-sm" th:href="@{/vehicles/delete/{id}(id=${vehicle.id})}" onclick="return confirm('¿Está seguro?')">Eliminar</a>
+        <a class="btn btn-success btn-sm" th:href="@{/vehicles/calculate-price/{id}(id=${vehicle.id})}">Calcular Precio</a>
       </td>
     </tr>
     </tbody>
   </table>
-  <a class="btn btn-success" th:href="@{/vehicles/add}">Agregar</a>
+  <a class="btn btn-success" th:href="@{/vehicles/add}">Agregar Vehículo</a>
 </div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

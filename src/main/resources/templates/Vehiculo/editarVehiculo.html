@@ -2,24 +2,23 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Editar Vehiculos</title>
+  <title>Editar Vehículo</title>
   <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-4">
-  <h1>Editar Vehiculo</h1>
-  <form th:action="@{/vehicles/{id}/edit(id=${vehicle.id})}" method="post">
-    <input type="hidden" th:name="_method" value="post" />
+  <h1>Editar Vehículo</h1>
+  <form th:action="@{/vehicles/edit/{id}(id=${vehicle.id})}" method="post">
     <div class="mb-3">
-      <label for="username" class="form-label">Usuario</label>
+      <label for="username" class="form-label">Placa</label>
       <input type="text" class="form-control" id="username" name="username" th:value="${vehicle.username}" required>
     </div>
     <div class="mb-3">
-      <label for="vehicleType" class="form-label">Tipo Vehiculo</label>
+      <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
       <select class="form-control" id="vehicleType" name="vehicleType" required>
-        <option value="car" th:selected="${vehicle.vehicleType == 'car'}">Carro</option>
-        <option value="motorcycle" th:selected="${vehicle.vehicleType == 'motorcycle'}">Moto</option>
+        <option value="Carro" th:selected="${vehicle.vehicleType == 'Carro'}">Carro</option>
+        <option value="Moto" th:selected="${vehicle.vehicleType == 'Moto'}">Moto</option>
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Actualizar</button>

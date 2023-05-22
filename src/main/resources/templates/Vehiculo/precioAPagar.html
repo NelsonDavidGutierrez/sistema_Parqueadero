@@ -2,16 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Detalle de Vehículo</title>
+  <title>Precio a Pagar</title>
   <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
   <link th:href="@{/css/heroic-features.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container mt-4">
-  <h1>Detalle de Vehículo</h1>
+  <h1>Precio a Pagar</h1>
   <p><strong>Placa:</strong> <span th:text="${vehicle.username}"></span></p>
-  <p><strong>Tipo:</strong> <span th:text="${vehicle.vehicleType}"></span></p>
-  <p><strong>Precio:</strong> <span th:text="${price}"></span></p>
+  <p><strong>Hora de Entrada:</strong> <span th:text="${entryTime}"></span></p>
+  <p><strong>Hora de Salida:</strong> <span th:text="${exitTime}"></span></p>
+  <p><strong>Tiempo Transcurrido (Horas):</strong> <span th:text="${hours}"></span></p>
+  <p><strong>Precio por Hora:</strong> <span th:text="${pricePerHour}"></span></p>
+  <p><strong>Precio Total:</strong> <span th:text="${totalPrice}"></span></p>
   <a class="btn btn-secondary" th:href="@{/vehicles}">Volver</a>
 </div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
