@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -35,18 +37,19 @@ public class VehicleController {
     }
 
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer id, Model model) {
+    public String edit(@PathVariable ("id") Integer id, Model model) {
         Optional<Vehicle> optionalVehicle = vehicleService.get(id);
-        optionalVehicle.ifPresentOrElse(
-                vehicle -> {
-                    LOGGER.info("Vehiculo buscado: {}", vehicle);
-                    model.addAttribute("vehiculo", vehicle);
-                },
-                () -> {
-                    model.addAttribute("errorMessage", "El vehículo con el ID " + id + " no se encontró.");
-                }
-        );
-        return "vehiculo/editarVehiculo";
+        if (optionalVehicle.isPresent()) {
+            Vehicle vehicle = optionalVehicle.get();
+            List<String> vehicleType = Arrays.asList("Carro", "Moto");
+            model.addAttribute("vehiculo", vehicle);
+            model.addAttribute("vehiculo", vehicleType);
+            return "vehiculo/editarVehiculo";
+        } else {
+            String errorMessage = "El vehículo con el ID " + id + " no se encontró.";
+            model.addAttribute("errorMessage", errorMessage);
+            return "redirect:/vehicles";
+        }
     }
 
 

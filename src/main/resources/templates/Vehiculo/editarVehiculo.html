@@ -11,13 +11,15 @@
     <h1>Editar Vehículo</h1>
     <form th:action="@{/vehicles/update}" method="post">
         <label for="placa" class="form-label">Placa: </label>
-        <input type="text" class="form-control" id="placa" name="placa" th:value="${vehicle != null ? vehicle.placa : ''}" required>
+        <input type="text" class="form-control" id="placa" name="placaNumero" required th:field="${vehicle.placa'}">
         <div class="mb-3">
             <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
-            <select class="form-control" id="vehicleType" name="vehicleType" required>
-                <option value="Carro" th:selected="${vehicle.vehicleType == 'vehicleType'}">Carro</option>
-                <option value="Moto" th:selected="${vehicle.vehicleType == 'vehicleType'}">Moto</option>
+            <select class="form-control" id="vehicleType" name="vehicleType" required th:field="${vehicule.typeVehicle}">
+                <option th:each="vehicleType : ${vehicleType}" th:value="${vehicleType}" th:text="${vehicleType}"></option>
             </select>
+        </div>
+        <div th:if="${errorMessage}" class="alert alert-danger">
+            <p th:text="${errorMessage}"></p>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
         <a class="btn btn-secondary" th:href="@{/vehicles}">Cancelar</a>
