@@ -55,7 +55,8 @@ public class VehicleController {
         if (optionalUsuario.isPresent()) {
             Usuario usuario = optionalUsuario.get();
             model.addAttribute("usuario", usuario);
-            model.addAttribute("vehiculos", vehicleService.findAll());
+            List<Vehicle> vehicles = vehicleService.findAll();
+            model.addAttribute("vehiculos", vehicles);
             return "vehiculo/editarVehiculo";
         } else {
             model.addAttribute("errorMessage", "El usuario con el ID " + id + " no se encontró.");
@@ -68,21 +69,20 @@ public class VehicleController {
     public String update(Vehicle vehicle, Usuario usuario){
         vehicleService.update(vehicle);
         usuarioService.updateUsuario(usuario);
+        usuario.setVehicle(Optional.ofNullable(vehicle));
         return "redirect:/vehicles";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
-        Vehicle vehicle = (Vehicle) vehicleService.findAll();
-        if (vehicle != null) {
-            Usuario usuario = usuarioService.findByVehicleId(id);
-            if (usuario != null) {
+        Usuario usuario = usuarioService.findByVehicleId(id);
+        if (usuario != null) {
+            Vehicle vehicle = usuario.getVehicle();
+            if (vehicle != null) {
                 usuario.setVehicle(null);
                 usuarioService.guardarUsuario(usuario);
             }
-            vehicleService.delete(vehicle.getId());
         }
         return "redirect:/vehicles";
-
     }
 }
