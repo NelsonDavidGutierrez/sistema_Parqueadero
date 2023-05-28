@@ -75,13 +75,14 @@ public class VehicleController {
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Integer id, Model model){
-        Usuario usuario = usuarioService.findByVehicleId(id);
-        if (usuario != null) {
-            Vehicle vehicle = usuario.getVehicle();
-            if (vehicle != null) {
+        Optional<Vehicle> vehicle = vehicleService.get(id);
+        if (vehicle != null) {
+            Usuario usuario = usuarioService.findByVehicleId(id);
+            if (usuario != null) {
                 usuario.setVehicle(null);
                 usuarioService.guardarUsuario(usuario);
             }
+            vehicleService.delete(id);
         }
         return "redirect:/vehicles";
     }
