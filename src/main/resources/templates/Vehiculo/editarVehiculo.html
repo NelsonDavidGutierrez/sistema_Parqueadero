@@ -10,15 +10,15 @@
 <div class="container mt-4">
     <h1>Editar Vehículo</h1>
     <form th:action="@{/vehicles/update}" method="post">
-        <label for="fullName" class="form-label">Propietario: </label>
+        <label for="fullName" class="form-label">Nombre del Propietario: </label>
         <input type="text" class="form-control" id="fullName" name="fullName" th:value="${usuario != null ? usuario.fullName : ''}" required>
-        <label for="placa" class="form-label">Placa: </label>
-        <input type="text" class="form-control" id="placa" name="placa" th:value="${vehicle != null ? vehicle.placa : ''}" required>
+        <label for="placa" class="form-label">Numero de Placa: </label>
+        <input type="text" class="form-control" id="placa" name="placa" th:value="${usuario != null ? usuario.vehicle.placa : ''}" required>
         <div class="mb-3">
             <label for="vehicleType" class="form-label">Tipo de Vehículo</label>
             <select class="form-control" id="vehicleType" name="vehicleType" required>
-                <option value="Carro" th:selected="${vehicle.vehicleType == 'vehicleType'}">Carro</option>
-                <option value="Moto" th:selected="${vehicle.vehicleType == 'vehicleType'}">Moto</option>
+                <option value="Carro" th:selected="${usuario.vehicle.vehicleType == 'vehicleType'}">Carro</option>
+                <option value="Moto" th:selected="${usuario.vehicle.vehicleType == 'vehicleType'}">Moto</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>
