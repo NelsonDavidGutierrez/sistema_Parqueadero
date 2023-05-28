@@ -1,5 +1,6 @@
 package crud.sistema.parqueadero.Model;
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -15,14 +16,14 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer Id;
-
-    @Column(name = "nombreUsuario")
-    private String nombreUsuario;
+    private Integer id;
 
     @Column(name = "placa")
     private String placa;
 
     @Column(name = "vehicleType")
     private String vehicleType;
+
+    @OneToOne(mappedBy = "vehicle", cascade = CascadeType.ALL)
+    private Usuario usuario;
 }
