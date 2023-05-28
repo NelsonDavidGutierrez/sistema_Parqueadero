@@ -12,25 +12,25 @@
   <table class="table">
     <thead>
     <tr>
+      <th>Propietario</th>
       <th>Placa</th>
       <th>Tipo</th>
       <th>Acción</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="vehicle : ${vehicles}">
-      <td th:text="${vehicle.username}"></td>
-      <td th:text="${vehicle.vehicleType}"></td>
+    <tr th:each="usuario : ${usuarios}">
+      <td th:text="${usuario.fullNombre}"></td>
+      <td th:text="${usuario.vehicle?.placa}"></td>
+      <td th:text="${usuario.vehicle?.vehicleType}"></td>
       <td>
-        <a class="btn btn-info btn-sm" th:href="@{/vehicles/{id}(id=${vehicle.id})}">Ver</a>
-        <a class="btn btn-primary btn-sm" th:href="@{/vehicles/edit/{id}(id=${vehicle.id})}">Editar</a>
-        <a class="btn btn-danger btn-sm" th:href="@{/vehicles/delete/{id}(id=${vehicle.id})}" onclick="return confirm('¿Está seguro?')">Eliminar</a>
-        <a class="btn btn-success btn-sm" th:href="@{/vehicles/calculate-price/{id}(id=${vehicle.id})}">Calcular Precio</a>
+        <a class="btn btn-primary btn-sm" th:href="@{/vehicles/edit/{id}(id=${usuario.vehicle?.id})}">Editar</a>
+        <a class="btn btn-danger btn-sm" th:href="@{/vehicles/delete/{id}(id=${usuario.vehicle?.id})}" onclick="return confirm('¿Está seguro?')">Eliminar</a>
       </td>
     </tr>
     </tbody>
   </table>
-  <a class="btn btn-success" th:href="@{/vehicles/add}">Agregar Vehículo</a>
+  <a class="btn btn-success" th:href="@{/vehicles/create}">Agregar Vehículo</a>
 </div>
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>

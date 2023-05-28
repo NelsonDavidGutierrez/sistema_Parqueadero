@@ -8,6 +8,16 @@
 </head>
 <body>
 <form class="form-horizontal" th:action="@{/vehicles/save}" method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="placa">Nombre Completo:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="fullNombre"
+                   name="fullNombre" placeholder="Nombre Completo"
+                   required autocomplete="off">
+        </div>
+    </div>
+
     <div class="form-group">
         <label class="control-label col-sm-2" for="placa">Placa:</label>
         <div class="col-sm-10">
